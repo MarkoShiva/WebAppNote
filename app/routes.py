@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request, g, jsonify
 from app.forms import LoginForm, RegistrationForm, ResetPasswordForm, ResetPasswordRequestForm
 from flask_login import current_user, login_user, logout_user
 from flask_login import current_user, login_required
-from app.models import User
+from app.models import User, Notes
 from app.email import send_password_reset_email
 
 
@@ -91,3 +91,29 @@ def reset_password(token):
         return redirect(url_for('login'))
     return render_template('auth/reset_password.html', form=form)
 
+"""
+    @ToDo will need the at least one main route for each app
+    and later maybe add different routes for PUT and DELETE?
+    Or add them to the same?
+"""
+
+
+@app.route('/notes', methods=['GET', 'POST']) #Todo Will need also PUT and DELETE
+def notes():
+    note = Notes()
+    notes = []
+    notes.append(note)
+    note.title = "This is a new note"
+    note.content = "Some text not really important just testing"
+    db.session.add(note)
+    db.session.commit()
+    return render_template('notes.html', notes=notes)
+
+@app.route('/document', methods=['GET', 'POST'])
+def document():
+    pass
+
+
+@app.route('/tasks', methods=['GET', 'POST'])
+def tasks():
+    pass

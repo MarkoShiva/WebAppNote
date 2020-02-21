@@ -1,3 +1,5 @@
+from _datetime import datetime
+
 from app import db, login
 
 from time import time
@@ -46,3 +48,14 @@ class User(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
+class Notes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String())
+    title = db.Column(db.String(64), index=True)
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow) # fixed bug created_at is not added by default?
+    modified_at = db.Column(db.DateTime, index=True, default=datetime.utcnow) # need to implement update of the notes field.
+    language = db.Column(db.String(5))
+
+# Need Work implement notification system I have example in Website project.

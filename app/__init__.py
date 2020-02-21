@@ -8,6 +8,8 @@ from flask_sendgrid import SendGrid
 from flask_mail_sendgrid import MailSendGrid
 from config import Config
 from flask import Flask, request
+from flask_moment import Moment
+
 app = Flask(__name__)
 app.config.from_object(Config)
 # app.config['EXPLAIN_TEMPLATE_LOADING'] = True
@@ -18,6 +20,7 @@ login.login_view = 'login'
 login.login_message = 'Please log in to access this page.'
 bootstrap = Bootstrap(app)
 mail = MailSendGrid(app)
+moment = Moment(app)
 
 from app import models, routes, handlers
 
