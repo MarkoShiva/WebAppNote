@@ -54,8 +54,20 @@ class Notes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String())
     title = db.Column(db.String(64), index=True)
-    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow) # fixed bug created_at is not added by default?
-    modified_at = db.Column(db.DateTime, index=True, default=datetime.utcnow) # need to implement update of the notes field.
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    modified_at = db.Column(db.DateTime, index=True, default=datetime.utcnow) # Todo need to implement update of the notes field.
     language = db.Column(db.String(5))
+
+
+class Tasks(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String())
+    title = db.Column(db.String(64), index=True)
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    modified_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    percentage = db.Column(db.Integer)
+    tags = db.Column(db.String(180))
+    language = db.Column(db.String(5))
+
 
 # Need Work implement notification system I have example in Website project.

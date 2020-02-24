@@ -23,4 +23,3 @@ mail = MailSendGrid(app)
 moment = Moment(app)
 
 from app import models, routes, handlers
-

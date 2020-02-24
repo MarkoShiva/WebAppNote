@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
@@ -45,3 +45,22 @@ class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
+
+
+"""
+    From here forms are added for Note app.
+"""
+
+
+class NotesForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    content = TextAreaField('Say something', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
+class TasksForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    description = TextAreaField('Add new task', validators=[DataRequired()])
+    percentage = IntegerField("Percentage", default=0)
+    tags = StringField("Tags")
+    submit = SubmitField('Submit')

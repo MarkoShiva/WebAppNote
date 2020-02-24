@@ -10,5 +10,3 @@ class Config(object):
     ADMINS = ['admin@testapp.com']
     SENDGRID_DEFAULT_FROM = 'admin@testapp.com'
     MAIL_SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-
-
