@@ -4,10 +4,9 @@ from flask_bootstrap import Bootstrap
 
 from flask_login import LoginManager
 from flask_mail import Mail
-from flask_sendgrid import SendGrid
 from flask_mail_sendgrid import MailSendGrid
 from config import Config
-from flask import Flask, request
+from flask import Flask
 from flask_moment import Moment
 
 app = Flask(__name__)

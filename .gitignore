@@ -133,3 +133,6 @@ dmypy.json
 sendgrid.env
 codealike.json
 Daily todo.md
+node_modules/
+
+package-lock.json

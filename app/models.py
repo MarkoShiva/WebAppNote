@@ -71,3 +71,16 @@ class Tasks(db.Model):
 
 
 # Need Work implement notification system I have example in Website project.
+# Do I need it?
+
+# Todo add document model
+# Todo one more
+
+class Document(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String())
+    title = db.Column(db.String(64), index=True)
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    modified_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    description = db.Column(db.Integer)
+    language = db.Column(db.String(5))

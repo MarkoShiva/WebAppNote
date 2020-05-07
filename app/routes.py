@@ -1,9 +1,9 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request, g, jsonify
-from app.forms import LoginForm, RegistrationForm, ResetPasswordForm, ResetPasswordRequestForm, NotesForm, TasksForm
+from app.forms import LoginForm, RegistrationForm, ResetPasswordForm, ResetPasswordRequestForm, NotesForm, TasksForm, DocumForm
 from flask_login import current_user, login_user, logout_user
 from flask_login import current_user, login_required
-from app.models import User, Notes, Tasks
+from app.models import User, Notes, Tasks, Document
 from app.email import send_password_reset_email
 
 @app.route("/login", methods=["GET", "POST"])
@@ -110,15 +110,28 @@ def notes():
     return render_template('notes.html', notes=notes_list, form=form)
 
 
-# nice to have all test cases for the app
-@app.route('/document', methods=['GET', 'POST'])
-def document():
-    pass
+
+
+
+
 
 
 @app.route('/tasks', methods=['GET', 'POST'])
 def tasks():
     # timestamp = datetime.utcnow() - timedelta(days=10) # Todo add some filter on how much notes I want to return
+    form = DocumForm()
+    if form.validate_on_submit():
+        document = Tasks(description=form.content.data, title=form.title.data)
+        db.session.add(document)
+        db.session.commit()
+        flash('Your document is now saved')
+        return redirect(url_for('document'))
+    docum_list = Document.query.order_by(Document.created_at.desc())
+    return render_template('document.html', documents=docum_list, form=form)
+
+
+@app.route('/document', methods=['GET', 'POST'])
+def document():
     form = TasksForm()
     if form.validate_on_submit():
         task = Tasks(description=form.description.data, title=form.title.data, percentage=form.percentage.data

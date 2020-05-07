@@ -64,3 +64,10 @@ class TasksForm(FlaskForm):
     percentage = IntegerField("Percentage", default=0)
     tags = StringField("Tags")
     submit = SubmitField('Submit')
+
+class DocumForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    content = TextAreaField('Document', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+

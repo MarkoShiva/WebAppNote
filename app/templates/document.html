@@ -11,16 +11,14 @@
             to access the <a href="{{ url_for('secret') }}">{{ 'secret page' }}</a></h3>
     {% endif %}
 
-    {% for task in tasks %}
-        <p>    {% print task.title %}
+    {% for document in documents %}
+        <p>    {% print document.title %}
         <br>
-            {% print task.description %}
+            {% print document.content %}
         <br>
-            {% print task.percentage %}
+            {% print document.created_at %}
         <br>
-            {% print task.created_at %}
-        <br>
-            {% print task.modified_at %}
+            {% print document.modified_at %}
         <br>
         </p>
     {% endfor %}
